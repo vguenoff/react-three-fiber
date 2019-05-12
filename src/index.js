@@ -7,17 +7,17 @@ import { useTransition, useSpring, animated as a } from 'react-spring/three';
 import { svgs, colors, deg, doubleSide } from './resources/helpers';
 
 /** This component renders a shape */
-function Shape({ shape, rotation, position, color, opacity, index }) {
+const Shape = ({ shape, rotation, position, color, opacity, index }) => {
     return (
         <a.mesh rotation={rotation} position={position.interpolate((x, y, z) => [x, y, z + -index * 50])}>
             <a.meshPhongMaterial attach="material" color={color} opacity={opacity} side={doubleSide} depthWrite={false} transparent />
             <shapeBufferGeometry attach="geometry" args={[shape]} />
         </a.mesh>
     );
-}
+};
 
 /** This component sets up a background plane and transitions a group of shapes */
-function Scene() {
+const Scene = () => {
     const [page, setPage] = useState(0);
     const [shapes, setShapes] = useState([]);
     // Switches scenes every 4 seconds
@@ -34,6 +34,7 @@ function Scene() {
         config: { mass: 30, tension: 800, friction: 190, precision: 0.0001 },
         ...{ order: ['leave', 'enter', 'update'], trail: 15, lazy: true, unique: true, reset: true },
     });
+
     return (
         <>
             <mesh scale={[20000, 20000, 1]} rotation={[0, deg(-20), 0]}>
@@ -47,34 +48,23 @@ function Scene() {
             </group>
         </>
     );
-}
+};
+
 /** Main component */
-function App() {
+const App = () => {
     return (
         <div className="main">
             <Canvas
                 invalidateFrameloop
-                camera={{ fov: 90, position: [0, 0, 1800], rotation: [0, deg(-20), deg(180)], near: 0.1, far: 20000 }}
+                camera={{ fov: 90, position: [0, 0, 1800], rotation: [0, deg(-10), deg(160)], near: 0.1, far: 20000 }}
             >
                 <ambientLight intensity={0.5} />
                 <spotLight intensity={0.5} position={[300, 300, 4000]} />
                 <Scene />
             </Canvas>
-            <a href="https://github.com/drcmda/react-three-fiber" className="top-left">
-                Github
-            </a>
-            <a href="https://twitter.com/0xca0a" className="top-right">
-                Twitter
-            </a>
-            <a href="https://github.com/react-spring/react-spring" className="bottom-left">
-                + react-spring
-            </a>
-            <a href="https://www.instagram.com/tina.henschel/" className="bottom-right">
-                + Illustrations @ Tina Henschel
-            </a>
             <span className="header">REACT THREE FIBER</span>
         </div>
     );
-}
+};
 
 ReactDOM.render(<App />, document.getElementById('root'));
