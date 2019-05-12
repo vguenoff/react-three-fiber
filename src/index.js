@@ -60,10 +60,18 @@ function App() {
                 <spotLight intensity={0.5} position={[300, 300, 4000]} />
                 <Scene />
             </Canvas>
-            <a href="https://github.com/drcmda/react-three-fiber" className="top-left" children="Github" />
-            <a href="https://twitter.com/0xca0a" className="top-right" children="Twitter" />
-            <a href="https://github.com/react-spring/react-spring" className="bottom-left" children="+ react-spring" />
-            <a href="https://www.instagram.com/tina.henschel/" className="bottom-right" children="Illustrations @ Tina Henschel" />
+            <a href="https://github.com/drcmda/react-three-fiber" className="top-left">
+                Github
+            </a>
+            <a href="https://twitter.com/0xca0a" className="top-right">
+                Twitter
+            </a>
+            <a href="https://github.com/react-spring/react-spring" className="bottom-left">
+                + react-spring
+            </a>
+            <a href="https://www.instagram.com/tina.henschel/" className="bottom-right">
+                + Illustrations @ Tina Henschel
+            </a>
             <span className="header">REACT THREE FIBER</span>
         </div>
     );
